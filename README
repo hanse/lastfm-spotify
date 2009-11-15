@@ -3,6 +3,11 @@ This library uses the Last.fm API to fetch various music data. In addition, it u
 Requirements:
 - PHP 5.2
 - A Last.fm API key
+- Cron jobs
+
+Installation:
+Put your api key in cronjob.php
+Setup a cron job that will run cronjob.php every 5 minutes or so
 
 Usage:
 

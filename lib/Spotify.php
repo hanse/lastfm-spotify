@@ -17,7 +17,7 @@ class Spotify {
      * @author Hans-Kristian Koren
      */
     public function search($query) {
-        $clean = $this->cleanQuery($query);
+        $clean = $this->prepareQuery($query);
         $result = simplexml_load_file('http://ws.spotify.com/search/1/track?q=' . urlencode($clean));
         
         if (count($result->track) > 0) {
@@ -25,8 +25,6 @@ class Spotify {
                 'artist' => (string) $result->track[0]->artist->name,
                 'track'  => (string) $result->track[0]->name,
                 'link'   => (string) $result->track[0]['href'],
-                'query' => $query,
-                'clean'  => $clean,
             );
         }
         
@@ -40,7 +38,7 @@ class Spotify {
      * @return string  The cleaned query
      * @author Hans-Kristian Koren
      */
-    protected function cleanQuery($query) {
+    protected function prepareQuery($query) {
         $query = str_replace('-', ' ', $query);
         $query = preg_replace('/\(.*?\)/', '', $query);
         $query = preg_replace('/feat[^\s]+/', '', $query);

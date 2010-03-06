@@ -1,0 +1,30 @@
+This library uses the Last.fm API to fetch various music data. In addition, it utilizes the Spotify Metadata API to add a spotify link to the songs.
+
+Requirements:
+* PHP 5.2
+* A Last.fm API key
+* Cron jobs
+
+Installation:
+Put your api key in cronjob.php
+Setup a cron job that will run cronjob.php every 5 minutes or so
+
+Usage:
+
+<pre>
+	<?php
+	
+	// Be sure to set the right include path
+	set_include_path(implode(PATH_SEPARATOR, array('lib/', get_include_path())));
+	
+	require 'LastFM.php';
+	require 'Spotify.php';
+	
+	$lastFm = new LastFM('my_api_key');
+	
+	$tracks = $lastFm->userGetTracks('Hanse');
+	
+	foreach ($tracks as $track) {
+		print_r($track);
+	}
+</pre>

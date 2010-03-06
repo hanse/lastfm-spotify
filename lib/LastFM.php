@@ -42,7 +42,7 @@ class LastFM {
      * @author Hans-Kristian Koren
      */
     public function setSpotify(Spotify $spotify) {
-        $this->spotify;
+        $this->spotify = $spotify;
     }
     
     /**
